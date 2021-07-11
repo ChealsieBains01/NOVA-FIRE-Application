@@ -9,17 +9,49 @@ import {
 import { Formik } from "formik";
 import * as Yup from "yup";
 
-const useStyles = makeStyles(() => ({
+const myStyles = makeStyles(() => ({
 text: {
-  border:`${1}px solid #1A6F4C`,
   borderRadius:`${9}px`,
-  width:`${17}em`,
+  width:`${20}em`,
+  '& label.Mui-focused': {
+    color: '#1A6F4C',
+  },
+  '& .MuiInput-underline:after': {
+    borderBottomColor: '#1A6F4C',
+  },
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: '#1A6F4C',
+    },
+    '&:hover fieldset': {
+      borderColor: '#1A6F4C',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: '#1A6F4C',
+    },
+  },
 },
 field: {
-  border:`${1}px solid #1A6F4C`,
   borderRadius:`${9}px`,
-  width:`${94}%`,
-  marginTop:`${1.5}em`
+  width:`${90}%`,
+  marginTop:`${1.5}em`,
+  '& label.Mui-focused': {
+    color: '#1A6F4C',
+  },
+  '& .MuiInput-underline:after': {
+    borderBottomColor: '#1A6F4C',
+  },
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: '#1A6F4C',
+    },
+    '&:hover fieldset': {
+      borderColor: '#1A6F4C',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: '#1A6F4C',
+    },
+  },
 },
 navigate: {
   border:`${1}px solid #1A6F4C`,
@@ -35,20 +67,20 @@ navigate: {
 step: {
   border:`${1}px solid #1A6F4C`,
   color:`#1A6F4C`,
-  width:`${125}px`,
+  width:`${100}%`,
   height:`${25}px`,
   borderRadius:`${10}px`,
   paddingTop:`${4}px`,
   marginLeft:`${8}px`,
-
  textAlign:`center`,
   cursor:`pointer`,
-  fontSize:`${13}px`
+  fontSize:`${16}px`,
+  fontFamily:`poppins`
 },
 option: {
   border:`${1}px solid #1A6F4C`,
   color:`#1A6F4C`,
-  width:`${25}px`,
+  width:`${35}px`,
   height:`${20}px`,
   borderRadius:`${3}px`,
   margin:`${8}px`,
@@ -66,9 +98,9 @@ const SignupSchema = Yup.object().shape({
     date:Yup.string().required("Required field"),
   });
 
-
+  
 const BasicInformation = ({increment}) => {
-  const classes = useStyles();
+  const classes = myStyles();
   const [value, setValue] = useState(9);
   const [internet, setInternet] = useState('Yes');
   const [indegious, setIndegious] = useState("Yes");
@@ -126,8 +158,11 @@ const BasicInformation = ({increment}) => {
   
     return(
         <>
-        <Container >
-<Typography variant="h5" style={{color:`#1A6F4C`,marginLeft:`${-3}em`,fontSize:`${20}px`}}>Tell us about yourself:</Typography>
+      
+        <Container>
+          <Box style={{marginLeft:`${-3}em`,marginBottom:`${1.5}em`}}>
+<Typography variant="h5" style={{color:`#1A6F4C`,fontSize:`${25}px`}}>Tell us about yourself:</Typography>
+</Box>
          <Formik
                   enableReinitialize
                     initialValues={{
@@ -140,7 +175,7 @@ const BasicInformation = ({increment}) => {
                     onSubmit={(Values) => increment + 1}
                   >
                         {({ handleSubmit, handleChange, errors }) => (
-                             <form style={{overflowY:`scroll`,overflowX:`hidden`,margin:`${-0.5}em ${0}px ${0}px ${-5}em`,width:`${60}vw`,height:`${70}vh`}} onSubmit={handleSubmit}>
+                             <form style={{overflowY:`scroll`,overflowX:`hidden`,margin:`${-0.5}em ${0}px ${0}px ${-9}em`,width:`${58}vw`,height:`${70}vh`,}} onSubmit={handleSubmit}>
     <div style={{display:`flex`,marginTop:`${1.5}em`}}>
   <Box>
 <TextField
@@ -189,23 +224,21 @@ className={classes.text}
 <Box  style={{marginLeft:`${2}em`}}>
 <TextField
 variant="outlined"
-type="text"
+type="email"
 size="small"
 onChange={handleChange}
 name="name"
 id="name"
-label="Gender"
+label="Email"
 error={errors.name}
 className={classes.text}
 />
 </Box>
 </div>
 
-<div style={{display:`flex`,marginTop:`${2}em`,marginBottom:`${1}em`}}>
-
-
-  <Box style={{display:`flex`,marginTop:`${1}em`,position:`relative`}}>
-  <Typography style={{position:`absolute`,bottom:`${1.8}em`,color:`#323865`,fontWeight:600}}>Current Grade</Typography>
+<div style={{display:`flex`,marginTop:`${2}em`,marginBottom:`${1}em`,overflow:`hidden`}}>
+  <Box style={{display:`flex`,marginTop:`${1.6}em`,position:`relative`}}>
+  <Typography style={{position:`absolute`,bottom:`${2.2}em`,color:`#323865`,fontWeight:600,fontFamily:`poppins`}}>Current Grade</Typography>
   <Box className={classes.navigate} id="box" onClick={ setValue(9)} > {value} </Box>
   <Box className={classes.navigate} id="box" onClick={ setValue(10)} > 10 </Box>
   <Box className={classes.navigate} id="box" onClick={ setValue(11)} >11</Box>
@@ -222,6 +255,7 @@ name="name"
 id="name"
 label="Geographic Region"
 error={errors.name}
+style={{marginTop:`${1}em`,width:`${21}em`,marginLeft:`${2}em`}}
 className={classes.text}
 />
 </Box>
@@ -239,11 +273,11 @@ error={errors.address}
 className={classes.field}
 />
 
-<Box style={{marginTop:`${2}em`}}>
-<Typography style={{color:`#323865`,fontWeight:600}}>What is your household income?</Typography>
+<Box style={{marginTop:`${2.5}em`,width:`${90}%`}}>
+<Typography style={{color:`#323865`,fontWeight:600,textAlign:`center`}} variant="h5">What is your household income?</Typography>
 
-<Typography style={{fontSize:`${0.7}em`}}>We ask for your household income to ensure that we are providing adequate opportunities to multiple students across Ontario</Typography>
-<Box style={{display:`flex`,marginTop:`${1}em`}}>
+<Typography style={{fontSize:`${1}em`,textAlign:`center`}}>We ask for your household income to ensure that we are providing adequate opportunities to multiple students across Ontario</Typography>
+<Box style={{display:`flex`,marginTop:`${1.5}em`}}>
   <Box className={classes.step} id="price" onClick={ setPrice(`>$35000`)} > {Price} </Box>
   <Box className={classes.step} id="price" onClick={ setPrice(`$35,000 - $55,000`)} > $35,000 - $55,000 </Box>
   <Box className={classes.step} id="price" onClick={ setPrice(`$55,000 - $75,000`)} >$55,000 - $75,000</Box>
@@ -253,7 +287,7 @@ className={classes.field}
 
 <div style={{display:`flex`,marginTop:`${1}em`,marginBottom:`${1}em`}}>
   <Box style={{marginLeft:`${2}em`}}>
-<Typography style={{color:`#323865`,fontWeight:600,fontSize:`${0.8}em`}}>Do you have access to a laptop and internet  that you can complete the <br/> program at home?</Typography>
+<Typography style={{color:`#323865`,fontWeight:600,fontSize:`${1}em`}}>Do you have access to a laptop and internet  that you can complete the <br/> program at home?</Typography>
 </Box>
 
 <Box  style={{marginLeft:`${2}em`}}>
@@ -264,13 +298,13 @@ className={classes.field}
 </Box>
 </div>
 
-<div style={{display:`flex`,marginTop:`${1}em`,marginBottom:`${1}em`}}>
+<div style={{display:`flex`,marginTop:`${2}em`,marginBottom:`${1}em`}}>
   <Box style={{marginLeft:`${2}em`}}>
-  <Typography style={{color:`#323865`,fontWeight:600,fontSize:`${0.8}em`}}>Do you wish to self‑identify as an Indigenous person  in Canada, such as <br/> 
+  <Typography style={{color:`#323865`,fontWeight:600,fontSize:`${1}em`}}>Do you wish to self‑identify as an Indigenous person  in Canada, such as <br/> 
 First Nation, Métis or Inuit?</Typography>
 </Box>
 
-<Box  style={{marginLeft:`${2.5}em`}}>
+<Box  style={{marginLeft:`${1}em`}}>
   <Box style={{display:`flex`}}>
 <Box className={classes.option}  id="second" onClick={ setIndegious(`Yes`)}>{indegious}</Box>
 <Box className={classes.option}  id="second" onClick={ setIndegious(`Yes`)}>No</Box>

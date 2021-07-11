@@ -52,7 +52,7 @@ class Signup extends React.Component {
   };
 
   render() {
-    const { user, signOut, signInWithGoogle } = this.props;
+    const {signInWithGoogle } = this.props;
 
     return (
       <div className="main">
@@ -61,7 +61,7 @@ class Signup extends React.Component {
         ) : (
           <>
           <div className="loginLeft">
-            <center><img src={logo}/></center>
+            <center><img src={logo} alt="Not Available"/></center>
             <p>
               NOVA FIRE (Fellowship in Innovation, Research, and Education) is a 5 month-long intensive fellowship program for high school students. Our fellows will participate in primary and secondary interdisciplinary research in 1 of our 4 topics. They will be given the opportunity to either develop a hands-on project, or a written report for publication, based on their findings and analysis. Students will have a chance to work in teams of 5-6. NOVA will be accepting a maximum of 24 students into our program. A full timeline, list of topics, and speakers can be found at <br/><br/>
               <b><a href="https://novaxnetwork.com/fellowship/">https://novaxnetwork.com/fellowship/. </a></b>
